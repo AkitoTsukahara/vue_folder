@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <style>
+        table tr th{
+            font-size: 16px;
+            color: white;
+            background: blue;
+            padding: 5px 15px;
+        }
+        table tr td{
+            font-size: 16px;
+            color: gray;
+            border: 1px solid gray;
+        }
+        li{
+            font-size: 16px;
+            color: gray;
+        }
+    </style>
+    <h1>Vue.js</h1>
+    <div id="app">
+        <template v-if="flag">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>mail</th>
+                </tr>
+                <tr v-for="(item,key) in items">
+                    <td>{{key}}</td>
+                    <td>{{item.mail}}</td>
+                </tr>
+            </table>
+        </template>
+        <template v-else>
+            <ul v-for="(item,key) in items">
+                <li>{{key}} : {{item.mail}}</li>
+            </ul>
+        </template>
+    </div>
+    <hr>
+    <button onclick="doAction()">click</button>
+
+    <script>
+        var data = {
+            flag:true,
+            items:{
+                test01:{mail:'test01@test.com'},
+                test02:{mail:'test02@test.com'},
+                test03:{mail:'test03@test.com'},
+                test04:{mail:'test04@test.com'},
+            }
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: data,
+        })
+
+        function doAction() {
+            data.flag = !data.flag;
+        }
+    </script>
+</body>
+</html>
